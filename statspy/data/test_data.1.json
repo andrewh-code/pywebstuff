@@ -1,0 +1,176 @@
+{
+    "Parity Season": "TPL Season 10 - Rock Bands: Public Doc",
+    "Players": [
+        {
+            "id": 53934,
+            "Name":"Charles Burger",
+            "Stats": {
+                "Assists": "3",
+                "Goals": "20",
+                "2nd Assists": "1",
+                "Times Traded": "0",
+                "Wins": "4",
+                "Ds:Turnover Ratio": "1.38",
+                "Total Assist:Throw Away Ratio": "0.80",
+                "Salary": "$266,500",
+                "Throwaways": "5",
+                "Receiver Error": "3",
+                "Ds": "11"
+            }
+        },
+        {
+            "id": 53414,
+            "Name": "Amanda Murdoch",
+            "Stats": {
+                "Assists": "1",
+                "Goals": "11",
+                "2nd Assists": "7",
+                "Times Traded": "3",
+                "Wins": "4",
+                "Ds:Turnover Ratio": "0.50",
+                "Total Assist:Throw Away Ratio": "1.00",
+                "Salary": "$193,000",
+                "Throwaways": "8",
+                "Receiver Error": "0",
+                "Ds": "4"
+            }
+        },
+    {
+            "id": 42606,
+            "Name": "Rebecca Chan",
+            "Stats": {
+                "Assists": "3",
+                "Goals": "16",
+                "2nd Assists": "9",
+                "Times Traded": "1",
+                "Wins": "6",
+                "Ds:Turnover Ratio": "0.08",
+                "Total Assist:Throw Away Ratio": "2.00",
+                "Salary": "$215,000",
+                "Throwaways": "6",
+                "Receiver Error": "7",
+                "Ds": "1"
+            }
+    },
+    {
+        "id": 51410,
+        "Name": "Ian Bone",
+        "Stats": {
+            "Assists": "29",
+            "Goals": "36",
+            "2nd Assists": "15",
+            "Times Traded": "2",
+            "Wins": "9",
+            "Ds:Turnover Ratio": "1.59",
+            "Total Assist:Throw Away Ratio": "2.00",
+            "Salary": "$638,000",
+            "Throwaways": "22",
+            "Receiver Error": "5",
+            "Ds": "43"
+        }
+    },
+    {
+        "id": 48273,
+        "Name": "Carter Chin",
+        "Stats": {
+            "Assists": "22",
+            "Goals": "4",
+            "2nd Assists": "18",
+            "Times Traded": "0",
+            "Wins": "7",
+            "Ds:Turnover Ratio": "0.18",
+            "Total Assist:Throw Away Ratio": "1.43",
+            "Salary": "$236,000",
+            "Throwaways": "28",
+            "Receiver Error": "5",
+            "Ds": "6"
+        }
+    },
+    {
+        "id": 50579,
+        "Name": "Andrew Gosbee",
+        "Stats": {
+            "Assists": "31",
+            "Goals": "18",
+            "2nd Assists": "30",
+            "Times Traded": "0",
+            "Wins": "9",
+            "Ds:Turnover Ratio": "0.39",
+            "Total Assist:Throw Away Ratio": "3.21",
+            "Salary": "$446,500",
+            "Throwaways": "19",
+            "Receiver Error": "4",
+            "Ds": "9"
+        } 
+    },
+    {
+        "id": 35180,
+        "Name": "Blue McClellan",
+        "Stats": {
+            "Assists": "10",
+            "Goals": "3",
+            "2nd Assists": "11",
+            "Times Traded": "2",
+            "Wins": "2",
+            "Ds:Turnover Ratio": "0.22",
+            "Total Assist:Throw Away Ratio": "2.33",
+            "Salary": "$186,500",
+            "Throwaways": "9",
+            "Receiver Error": "0",
+            "Ds": "2"
+        }
+    },
+    {
+        "id": 37161, 
+        "Name": "Cathy Wong",
+        "Stats": {
+            "Assists": "19",
+            "Goals": "12",
+            "2nd Assists": "9",
+            "Times Traded": "5",
+            "Wins": "7",
+            "Ds:Turnover Ratio": "0.38",
+            "Total Assist:Throw Away Ratio": "2.80",
+            "Salary": "$298,000",
+            "Throwaways": "10",
+            "Receiver Error": "3",
+            "Ds": "5"
+        }
+    },
+    {
+        "id": 48721,
+        "Name": "Jon Jephcott",
+        "Stats": {
+            "Assists": "11",
+            "Goals": "20",
+            "2nd Assists": "14",
+            "Times Traded": "2",
+            "Wins": "6",
+            "Ds:Turnover Ratio": "0.80",
+            "Total Assist:Throw Away Ratio": "2.50",
+            "Salary": "$337,000",
+            "Throwaways": "10",
+            "Receiver Error": "5",
+            "Ds": "12"
+        }
+    },
+    {
+        "id": 49235, 
+        "Name": "Andrew Fell",
+        "Stats": {
+            "Assists": "3",
+            "Goals": "3",
+            "2nd Assists": "9",
+            "Times Traded": "3",
+            "Wins": "5.5",
+            "Ds:Turnover Ratio": "0.43",
+            "Total Assist:Throw Away Ratio": "2.00",
+            "Salary": "$175,500",
+            "Throwaways": "6",
+            "Receiver Error": "1",
+            "Ds": "3"
+        }
+    }
+]
+
+}
