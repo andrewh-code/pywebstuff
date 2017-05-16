@@ -128,8 +128,10 @@ def getLeaders():
 @restroutes.route('/stats/<int:player_id>', methods=['GET', 'PUT'])    # no spaces between int and player_id
 def getPlayerStats(player_id):
     
+    # variables
     stats = Stats()
     full_stats = stats.getStats()
+    player_found = False
 
     if len(full_stats) == 0:    #id doesn't exist in database
         payload = not_found()
@@ -150,20 +152,22 @@ def getPlayerStats(player_id):
     # updating a user
     if (request.method == 'PUT'):
         request_data = request.get_json()
-        
-        
+       
         for player in full_stats['Players']:
             if player['id'] == player_id:
+                player_found = True
                 break
-        
-        # iterate over body to get the key
-        for key in request_data:
-            if key in player['Stats']:
-                player['Stats'][key] = request_data[key]
-        
-        # go through the process of updating the database here
 
-        payload = jsonify(player)
-        return payload
-    
+        if player_found == True:
+            # iterate over body to get the key
+            for key in request_data:
+                if key in player['Stats']:
+                    player['Stats'][key] = request_data[key]
+            
+            payload = jsonify(player)
+            return payload
+            # go through the process of updating the database here
+        else:
+            return not_found()
+
     return bad_request()
