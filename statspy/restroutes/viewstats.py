@@ -20,7 +20,7 @@ def not_found(error=None):
 def bad_request(error = None):
     server_message = {
         "status": 400,
-        "message": "Sorry, the server cannot process the reuquest: " + request.url
+        "message": "Sorry, the server cannot process the reuuuuuuuuquest: " + request.url
     }
 
     resp = jsonify(server_message)
@@ -136,11 +136,9 @@ def getPlayerStats(player_id):
     if len(full_stats) == 0:    #id doesn't exist in database
         payload = not_found()
         return payload 
-    
-    if not request.get_json():
-        payload = not_found()
-        return payload 
+     
 
+    print(__file__, "request method is", request.method)
     if (request.method == 'GET'):        
         # full_stats is a dictionary now, access it 
         for player in full_stats['Players']:
@@ -151,8 +149,13 @@ def getPlayerStats(player_id):
     
     # updating a user
     if (request.method == 'PUT'):
+        
+        if not request.get_json():
+            payload = not_found()
+            return payload
+        
         request_data = request.get_json()
-       
+
         for player in full_stats['Players']:
             if player['id'] == player_id:
                 player_found = True
@@ -165,9 +168,8 @@ def getPlayerStats(player_id):
                     player['Stats'][key] = request_data[key]
             
             payload = jsonify(player)
-            return payload
             # go through the process of updating the database here
         else:
             return not_found()
 
-    return bad_request()
+    return payload

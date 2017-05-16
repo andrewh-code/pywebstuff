@@ -14,7 +14,7 @@ class Stats():
         self.x = 0
 
     def getStats(self):
-        print("stats file is: ", self.stats_file)
+        print(__file__, "stats file is: ", self.stats_file)
         with open(self.stats_file) as json_file:
             json_stats = json.load(json_file)
         
