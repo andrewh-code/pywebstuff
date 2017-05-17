@@ -56,17 +56,13 @@ def add_test():
     return resp 
 
 
-@restroutes.route('/add/<int:player_id>', methods=['POST'])
+@restroutes.route('/manage/<int:player_id>', methods=['POST'])
 def addPlayer(player_id):
     stats = Stats()
     full_stats = stats.getStats()
     print(__file__, "debug")
     player_found = False
-    
-    
-    # only post is allowed
-    if (request.method != 'POST'):
-        return method_not_allowed()
+
 
     # file could not be found
     if (len(full_stats) == 0):
@@ -121,6 +117,34 @@ def addPlayer(player_id):
     return resp 
 
         
+@restroutes.route('/manage/<int:player_id>', methods=["DELETE"])
+def delete_player(player_id):
+    stats = Stats()
+    full_stats = stats.getStats()
+    print(__file__, "debug")
+    player_found = False
+    count = 0
+
+    # check to see if player already exists in the "database"
+    for player in full_stats['Players']:
+        if player['id'] == player_id:
+            player_found = True
+            break 
+        count = count + 1
+
+    if (player_found == False):
+        message = { "status": 404,
+                    "message": "player id not found"}
+        resp = jsonify(message)
+        resp.status_code = 404
+    else:
+        # this is where you delete the player from the database 
+        full_stats['Players'].pop(count)\
+        resp = jsonify(full_stats)
+        resp.status_code = 200
+    
+    return resp
+
 
 
     
