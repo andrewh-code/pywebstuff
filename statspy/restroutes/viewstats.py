@@ -94,7 +94,7 @@ def getLeaders():
     assist_leaders = sorted(assist_leaders, key=lambda x: x[1], reverse=True)
     assist_leaders = assist_leaders[:5]
 
-    second_assist_leaders = sorted(second_assist_leaders, key=lambda x: x[1], reverse=True)
+    second_assist_leaders = sorted(second_assist_leaders, key=lambda x: x[1], reverse=True) 
     second_assist_leaders = second_assist_leaders[:5]
 
     defensive_leaders = sorted(defensive_leaders, key=lambda x: x[1], reverse=True)

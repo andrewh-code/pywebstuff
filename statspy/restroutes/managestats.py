@@ -139,7 +139,7 @@ def delete_player(player_id):
         resp.status_code = 404
     else:
         # this is where you delete the player from the database 
-        full_stats['Players'].pop(count)\
+        full_stats['Players'].pop(count)
         resp = jsonify(full_stats)
         resp.status_code = 200
     
