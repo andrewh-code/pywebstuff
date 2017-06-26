@@ -3,6 +3,7 @@ from flask import Response
 from flask import request
 from . import restroutes
 from .stats import Stats
+import functools
 
 @restroutes.errorhandler(404)
 def not_found(error=None):
@@ -56,8 +57,110 @@ def seasonName():
 
     return payload
 
+@restroutes.route('/stats/<int:player_id>', methods=['GET', 'PUT'])    # no spaces between int and player_id
+def getPlayerStats(player_id):
+    
+    # variables
+    stats = Stats()
+    full_stats = stats.getStats()
+    player_found = False
+
+    if len(full_stats) == 0:    #id doesn't exist in database
+        payload = not_found()
+        return payload 
+     
+
+    print(__file__, "request method is", request.method)
+    if (request.method == 'GET'):        
+        # full_stats is a dictionary now, access it 
+        for player in full_stats['Players']:
+            if player['id'] == player_id:
+                individual_stats = player
+        payload = jsonify(individual_stats)
+        return payload 
+    
+    # updating a user
+    if (request.method == 'PUT'):
+        
+        if not request.get_json():
+            payload = not_found()
+            return payload
+        
+        request_data = request.get_json()
+
+        for player in full_stats['Players']:
+            if player['id'] == player_id:
+                player_found = True
+                break
+
+        if player_found == True:
+            # iterate over body to get the key
+            for key in request_data:
+                if key in player['Stats']:
+                    player['Stats'][key] = request_data[key]
+            
+            payload = jsonify(player)
+            # go through the process of updating the database here
+        else:
+            return not_found()
+
+    return payload
+
 @restroutes.route('/stats/leaders', methods=['GET'])
 def getLeaders():
+    
+    stats = Stats()
+    full_stats = stats.getStats()
+    
+    if len(full_stats) == 0:
+        return not_found()
+    
+    goal_leaders = []
+    assist_leaders = []
+    second_assist_leaders = []
+    defensive_leaders = []
+    throwaway_leaders = []
+    receiver_leaders = []
+    salary_leaders = []
+    win_leaders = []
+
+    leaders_dict = {}
+    lowest_goals = 0
+
+    for player in full_stats['Players']:
+        goal_leaders.append([player['Name'], int(player['Stats']['Goals'])])
+        assist_leaders.append([player['Name'], int(player['Stats']['Assists'])])
+        second_assist_leaders.append([player['Name'], int(player['Stats']['2nd Assists'])])
+        defensive_leaders.append([player['Name'], int(player['Stats']['Ds'])])
+        throwaway_leaders.append([player['Name'], int(player['Stats']['Throwaways'])])
+        receiver_leaders.append([player['Name'], int(player['Stats']['Receiver Error'])])
+        salary_leaders.append([player['Name'], player['Stats']['Salary']])
+        win_leaders.append([player['Name'], float(player['Stats']['Wins'])])
+
+    # result of for loop
+        # [['Charles Burger', 20], ['Amanda Murdoch', 11], ['Rebecca Chan', 16],
+    # use reduce to find the top player in each stats
+    func_reduce = lambda a,b: a if (a>b) else b
+    goal_leader = functools.reduce(func_reduce, goal_leaders)
+    assist_leader = functools.reduce(func_reduce, assist_leaders)
+    second_assist_leader = functools.reduce(func_reduce, second_assist_leaders)
+    defensive_leader = functools.reduce(func_reduce, defensive_leaders)
+    throwaway_leader = functools.reduce(func_reduce, throwaway_leaders)
+
+    leaders_dict['Goals'] = goal_leader
+    leaders_dict['Assists'] = assist_leader
+    leaders_dict['2nd Assists'] = second_assist_leader
+    leaders_dict['Ds'] = second_assist_leader
+    leaders_dict['Throwaways'] = throwaway_leader
+    #leaders_dict['Recever Error'] = receiver_leader
+    #leaders_dict['Salary'] = salary_leader
+    #leaders_dict['Wins'] = win_leader
+
+
+    return jsonify(leaders_dict)
+
+@restroutes.route('/stats/leaders/topfive', methods=['GET'])
+def getLeadersTopFive():
     
     stats = Stats()
     full_stats = stats.getStats()
@@ -123,53 +226,3 @@ def getLeaders():
     leaders_dict['Wins'] = win_leaders
 
     return jsonify(leaders_dict)
-
-
-@restroutes.route('/stats/<int:player_id>', methods=['GET', 'PUT'])    # no spaces between int and player_id
-def getPlayerStats(player_id):
-    
-    # variables
-    stats = Stats()
-    full_stats = stats.getStats()
-    player_found = False
-
-    if len(full_stats) == 0:    #id doesn't exist in database
-        payload = not_found()
-        return payload 
-     
-
-    print(__file__, "request method is", request.method)
-    if (request.method == 'GET'):        
-        # full_stats is a dictionary now, access it 
-        for player in full_stats['Players']:
-            if player['id'] == player_id:
-                individual_stats = player
-        payload = jsonify(individual_stats)
-        return payload 
-    
-    # updating a user
-    if (request.method == 'PUT'):
-        
-        if not request.get_json():
-            payload = not_found()
-            return payload
-        
-        request_data = request.get_json()
-
-        for player in full_stats['Players']:
-            if player['id'] == player_id:
-                player_found = True
-                break
-
-        if player_found == True:
-            # iterate over body to get the key
-            for key in request_data:
-                if key in player['Stats']:
-                    player['Stats'][key] = request_data[key]
-            
-            payload = jsonify(player)
-            # go through the process of updating the database here
-        else:
-            return not_found()
-
-    return payload
