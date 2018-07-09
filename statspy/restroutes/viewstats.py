@@ -164,7 +164,7 @@ def getLeadersTopFive():
     
     stats = Stats()
     full_stats = stats.getStats()
-    a
+    
     if len(full_stats) == 0:
         return not_found()
     
