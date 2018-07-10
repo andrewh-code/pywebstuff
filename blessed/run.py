@@ -2,6 +2,7 @@
 from flask import Flask
 from webapp import webapp_routes
 from webapp.module_one import module_one_routes
+from webapp.authentication import authentication_routes
 
 app = Flask(__name__)
 ############################################################
@@ -17,4 +18,5 @@ def index():
 if __name__ == '__main__':
     app.register_blueprint(webapp_routes)
     app.register_blueprint(module_one_routes)
+    app.register_blueprint(authentication_routes)
     app.run(host='localhost', port=5000, debug=True)
