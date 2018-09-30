@@ -1,0 +1,5 @@
+https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/
+
+https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world/page/8
+
+https://blog.theodo.fr/2017/03/developping-a-flask-web-app-with-a-postresql-database-making-all-the-possible-errors/
